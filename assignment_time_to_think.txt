@@ -1,0 +1,23 @@
+use assignment;
+
+-- Create a View for the below queries:
+
+-- From the employee salary table, we need to see the ((total salary as “TOTAL  COST”)) 
+-- for ((each department)) arranged in the ((descending)) order of total salary .
+
+-- Also just show only those departments where “TOTAL COST” is ((greater than 50000)).
+
+select *from emp_sal;
+
+
+select dept,count(dept) as qnty_dept, sum(salary) as total_cost from emp_sal
+group by dept
+having sum(salary) > 50000
+order by total_cost desc;
+
+create view sal as (select dept,count(dept) as qnty_dept, sum(salary) as total_cost from emp_sal
+group by dept
+having sum(salary) > 50000
+order by total_cost desc);
+
+select *from sal;
